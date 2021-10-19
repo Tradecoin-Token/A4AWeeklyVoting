@@ -117,8 +117,21 @@
             var pausetime = 14400000
             var PendingTime = unix_timestamp;
             var currentrunningweek = Math.floor(((new Date().getTime()-unix_timestamp)/eachweek)+1,0)
-
-        
+            
+            let VotingAsset1 = "_Total_Votes_PaxosGold";
+            let VA1          = VotingAsset1.replace(VotingAsset1, "PAXG");
+            
+            let VotingAsset2 = "_Total_Votes_Tether";
+            let VA2          = VotingAsset2.replace(VotingAsset2, "USDT");
+            
+            
+            let VotingAsset3 = "_Total_Votes_CACHEGold"
+            let VA3          = VotingAsset3.replace(VotingAsset3,"CGT"); 
+            
+            
+            let VotingAsset4 = "_Total_Votes_xUSD"
+            let VA4          = VotingAsset4.replace(VotingAsset4,"xUSD");
+            
             window.onload = async function(){
             var responseObject = await fetch(APIURL);
             loanData = await responseObject.json();
@@ -134,43 +147,43 @@
             var panel2ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+"_Total_Txns");
             if(panel2ResponseObject.status ==404)
             {
-            document.getElementById("panel2").innerHTML = 'Total Txns '+currentrunningweek+'th Week<br>'+"-";
+            document.getElementById("panel2").innerHTML = 'Total Txns<br>'+"-";
             }
             panel2Data = await panel2ResponseObject.json();
-            document.getElementById("panel2").innerHTML = 'Total Txns '+currentrunningweek+'th Week<br>'+panel2Data.value;
+            document.getElementById("panel2").innerHTML = 'Total Txns<br>'+panel2Data.value;
 
-            var panel3ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+"_Total_Votes_PaxosGold");
+            var panel3ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+VotingAsset1);
             if(panel3ResponseObject.status ==404)
             {
-            document.getElementById("panel3").innerHTML = 'PaxosGold Votes '+currentrunningweek+'th Week<br>'+"-";
+            document.getElementById("panel3").innerHTML = VA1+' Votes<br>'+"-";
             }
             panel3Data = await panel3ResponseObject.json();
-            document.getElementById("panel3").innerHTML = 'PaxosGold Votes '+currentrunningweek+'th Week<br>'+panel3Data.value;
+            document.getElementById("panel3").innerHTML = VA1+' Votes<br>'+panel3Data.value;
 
-            var panel4ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+"_Total_Votes_Tether");
+            var panel4ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+VotingAsset2);
             if(panel4ResponseObject.status ==404)
             {
-            document.getElementById("panel4").innerHTML = 'Tether Votes '+currentrunningweek+'th Week<br>'+"-";
+            document.getElementById("panel4").innerHTML = VA2+' Votes<br>'+"-";
             }
             panel4Data = await panel4ResponseObject.json();
-            document.getElementById("panel4").innerHTML = 'Tether Votes '+currentrunningweek+'th Week<br>'+panel4Data.value;
+            document.getElementById("panel4").innerHTML = VA2+' Votes<br>'+panel4Data.value;
             
             
-            var panel5ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+"_Total_Votes_CACHEGold");
+            var panel5ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+VotingAsset3);
             if(panel5ResponseObject.status ==404)
             {
-            document.getElementById("panel5").innerHTML = 'CACHEGold Votes '+currentrunningweek+'th Week<br>'+"-";
+            document.getElementById("panel5").innerHTML = VA3+' Votes<br>'+"-";
             }
             panel5Data = await panel5ResponseObject.json();
-            document.getElementById("panel5").innerHTML = 'CACHEGold Votes '+currentrunningweek+'th Week<br>'+panel5Data.value;
+            document.getElementById("panel5").innerHTML = VA3+' Votes<br>'+panel5Data.value;
                         
-            var panel6ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+"_Total_Votes_xUSD");
+            var panel6ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/"+currentrunningweek+VotingAsset4);
             if(panel6ResponseObject.status ==404)
             {
-            document.getElementById("panel6").innerHTML = 'xUSD Votes '+currentrunningweek+'th Week<br>'+"-";
+            document.getElementById("panel6").innerHTML = VA4+' Votes<br>'+"-";
             }
             panel6Data = await panel6ResponseObject.json();
-            document.getElementById("panel6").innerHTML = 'xUSD Votes '+currentrunningweek+'th Week<br>'+panel6Data.value;
+            document.getElementById("panel6").innerHTML = VA4+' Votes<br>'+panel6Data.value;
             
             var TSUptoPastWeek = unix_timestamp+(currentrunningweek)*eachweek
             var votingpausetime = TSUptoPastWeek+pausetime
