@@ -66,9 +66,16 @@
                         <div class="card-body text-center h4 text-white" id="panel6"></div>
                     </div>
                 </div>
+                
                 <div class="col-md-3 col-12 mb-3">
                     <div class="card py-3" style="background: #0dbaae;">
                         <div class="card-body text-center h4 text-white" id="panel7"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel8"></div>
                     </div>
                 </div>                
                                 
@@ -184,6 +191,31 @@
             }
             panel6Data = await panel6ResponseObject.json();
             document.getElementById("panel6").innerHTML = VA4+' Votes<br>'+panel6Data.value;
+                        
+            var WinnerVotes = Math.max(panel3Data.value,panel4Data.value,panel5Data.value,panel6Data.value)        
+            
+            if (WinnerVotes == panel3Data.value)
+            {
+            document.getElementById("panel8").innerHTML = ' Winner<br>'+VA1+WinnerVotes;            
+            }
+            
+            else if (WinnerVotes == panel4Data.value)
+            {
+            document.getElementById("panel8").innerHTML = ' Winner<br>'+VA2+WinnerVotes;            
+            }
+
+            else if (WinnerVotes == panel5Data.value)
+            {
+            document.getElementById("panel8").innerHTML = ' Winner<br>'+VA3+WinnerVotes;            
+            }
+
+            else (WinnerVotes == panel6Data.value)
+            {
+            document.getElementById("panel8").innerHTML = ' Winner<br>'+VA4;            
+            }            
+            
+
+                
             
             var TSUptoPastWeek = unix_timestamp+(currentrunningweek)*eachweek
             var votingpausetime = TSUptoPastWeek+pausetime
