@@ -1,3 +1,5 @@
+<!---Change var LoadedWeek = currentrunningweek; to get Specific Week Data--->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +89,7 @@
         <div class="container-fluid mx-auto py-5 px-lg-5">
             <div class="row">
                 <div class="col-md-9 pb-3">
-                    <div class="form-group rounded position-relative border p-1">
+                    <div class="form-group rounded position-relative border p-1">              
                         <label class="small ml-3 mt-n3 px-2 position-absolute bg-white">Enter Address</label>
                         <input type="text" class="form-control border-0 px-4 no-focus" oninput="search(this.value);">
                     </div>
@@ -108,6 +110,7 @@
         </div>
     </div>
     <script>
+        
         const APIURL = "https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA";
 
         var loanData = '';
@@ -194,30 +197,26 @@
                         
             var WinnerVotes = Math.max(panel3Data.value,panel4Data.value,panel5Data.value,panel6Data.value)        
             
-            if (WinnerVotes == panel3Data.value)
+            if (panel3Data.value == WinnerVotes)
             {
             document.getElementById("panel8").innerHTML = 'Current Winner<br>'+VA1;            
             }
             
-            else if (WinnerVotes == panel4Data.value)
+            else if (panel4Data.value == WinnerVotes)
             {
             document.getElementById("panel8").innerHTML = 'Current Winner<br>'+VA2;            
             }
 
-            else if (WinnerVotes == panel5Data.value)
+            else if (panel5Data.value == WinnerVotes)
             {
             document.getElementById("panel8").innerHTML = 'Current Winner<br>'+VA3;            
             }
 
-            else if (WinnerVotes == panel6Data.value)
+            else if(panel6Data.value == WinnerVotes)
             {
             document.getElementById("panel8").innerHTML = 'Current Winner<br>'+VA4;            
             }            
             
-            else (WinnerVotes > 0)
-            {
-            document.getElementById("panel8").innerHTML = 'Current Winner<br>'+"-";            
-            }
 
                 
             
@@ -241,12 +240,18 @@
             sortRule = value;
             showData(loanData, sortData);
         }
-
+        
+        var LoadedWeek = currentrunningweek;
+        
+        
         function showData(loanData, sort){
             var data = loanData;
             var output = '';
             var allIndex = [];
             var searchResult = [];
+                        
+
+            
             data.forEach(function(item, index){
                 if(item.key.includes(address)){
                     thisKey = item.key.substring(item.key.lastIndexOf("_")+1);
@@ -257,7 +262,7 @@
                     }
                     var thisIndex = allIndex.indexOf(thisKey);
  
-                    if(item.key.includes(currentrunningweek+'_User_Total_Votes')){
+                    if(item.key.includes(LoadedWeek+'_User_Total_Votes')){
                         searchResult[thisIndex].DepositAmount = item.value;
                     }
                 }
